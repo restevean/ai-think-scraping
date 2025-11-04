@@ -37,3 +37,11 @@ logs/
 # Environment variables
 .env
 .env.local
+
+# Pre-commit
+.pre-commit-framework/
+
+# Misc
+dmypy.json
+*.egg
+pip-wheel-metadata/
