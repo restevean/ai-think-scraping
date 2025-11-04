@@ -296,7 +296,7 @@ url = "https://reddit.com/r/Python"
 if scraper.can_handle(url):
     # Scrape
     result = scraper.scrape(url)
-    
+
     if result.success:
         print(f"Platform: {scraper.platform_name}")
         print(f"Messages: {result.messages_count}")
@@ -393,10 +393,10 @@ for platform in ["reddit", "stackoverflow"]:
         f"https://{platform}.com/page1",
         f"https://{platform}.com/page2"
     ]
-    
+
     print(f"\nScraping {platform}...")
     results = orchestrator.scrape_platform(platform, urls)
-    
+
     for result in results:
         print(f"  {result.url}: {result.messages_count} messages")
 ```
@@ -453,9 +453,9 @@ urls = ["https://reddit.com/r/Python"]
 try:
     results = orchestrator.scrape_urls(urls)
     summary = orchestrator.get_results_summary()
-    
+
     logger.info(f"Scraping completed: {summary['successful']}/{summary['total_urls']}")
-    
+
 except Exception as e:
     logger.error(f"Scraping failed: {str(e)}")
 ```
@@ -528,7 +528,7 @@ $ thinkscraper scrape-urls urls.txt --output results.json
 
 ### Problem: Low success rate
 
-**Cause:** 
+**Cause:**
 - Invalid URLs
 - Website structure changed
 - Being rate-limited
@@ -551,7 +551,7 @@ $ thinkscraper show-summary results.json
    ```bash
    # Good: Process all at once
    thinkscraper scrape-urls urls.txt --output results.json
-   
+
    # Avoid: One by one
    for url in $(cat urls.txt); do
        thinkscraper scrape-url "$url"
@@ -562,7 +562,7 @@ $ thinkscraper show-summary results.json
    ```bash
    # Faster: One scraper initialization
    thinkscraper scrape-platform reddit url1 url2 url3
-   
+
    # Slower: Factory finds scraper each time
    thinkscraper scrape-urls urls.txt
    ```
@@ -571,7 +571,7 @@ $ thinkscraper show-summary results.json
    ```bash
    # Good: Single export
    thinkscraper export-results results.json export.csv --format csv
-   
+
    # Avoid: Multiple exports
    thinkscraper show-summary results.json
    thinkscraper export-results results.json report1.csv

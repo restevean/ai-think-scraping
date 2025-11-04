@@ -6,8 +6,19 @@ import pytest
 
 from src.abstractions import IParser
 from src.models import Message, ScrapingResult
-from src.parsers import BaseParser, DevToParser, MediumParser, RedditParser, StackOverflowParser
-from src.scrapers import DevToScraper, MediumScraper, RedditScraper, StackOverflowScraper
+from src.parsers import (
+    BaseParser,
+    DevToParser,
+    MediumParser,
+    RedditParser,
+    StackOverflowParser,
+)
+from src.scrapers import (
+    DevToScraper,
+    MediumScraper,
+    RedditScraper,
+    StackOverflowScraper,
+)
 
 
 class TestBaseParser:

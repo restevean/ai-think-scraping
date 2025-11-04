@@ -32,9 +32,7 @@ class ScraperFactory(IScraperFactory):
             raise ValueError("Platform must be a non-empty string")
 
         if not issubclass(scraper_class, IScraper):
-            raise TypeError(
-                f"{scraper_class.__name__} must implement IScraper interface"
-            )
+            raise TypeError(f"{scraper_class.__name__} must implement IScraper interface")
 
         platform_lower = platform.lower().strip()
         self._scrapers[platform_lower] = scraper_class
@@ -62,8 +60,7 @@ class ScraperFactory(IScraperFactory):
         if platform_lower not in self._scrapers:
             supported = ", ".join(self._scrapers.keys())
             raise ValueError(
-                f"Unsupported platform: '{platform}'. "
-                f"Supported platforms: {supported}"
+                f"Unsupported platform: '{platform}'. " f"Supported platforms: {supported}"
             )
 
         scraper_class = self._scrapers[platform_lower]
@@ -75,9 +72,7 @@ class ScraperFactory(IScraperFactory):
 
         except Exception as e:
             logger.error(f"Failed to instantiate scraper for {platform_lower}: {str(e)}")
-            raise ValueError(
-                f"Failed to create scraper for {platform_lower}: {str(e)}"
-            ) from e
+            raise ValueError(f"Failed to create scraper for {platform_lower}: {str(e)}") from e
 
     @property
     def supported_platforms(self) -> list[str]:

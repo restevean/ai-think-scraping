@@ -40,9 +40,7 @@ class TestMessage:
     def test_message_requires_content(self) -> None:
         """Test that content is required."""
         with pytest.raises(ValueError):
-            Message(  # type: ignore
-                platform="reddit", url="https://reddit.com/r/test"
-            )
+            Message(platform="reddit", url="https://reddit.com/r/test")  # type: ignore
 
     def test_message_requires_platform(self) -> None:
         """Test that platform is required."""

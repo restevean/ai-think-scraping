@@ -28,9 +28,7 @@ class TestHttpClient:
 
     def test_initialization_with_custom_values(self) -> None:
         """Test HttpClient initialization with custom values."""
-        client = HttpClient(
-            timeout=20, max_retries=5, retry_delay=3, request_delay=2
-        )
+        client = HttpClient(timeout=20, max_retries=5, retry_delay=3, request_delay=2)
 
         assert client.timeout == 20
         assert client.max_retries == 5
@@ -128,9 +126,7 @@ class TestJsonStorage:
         """Test saving with .json extension in filename."""
         with tempfile.TemporaryDirectory() as tmpdir:
             storage = JsonStorage(storage_dir=Path(tmpdir))
-            msg = Message(
-                content="Test", platform="reddit", url="https://reddit.com"
-            )
+            msg = Message(content="Test", platform="reddit", url="https://reddit.com")
 
             filepath = storage.save(msg, "test.json")
 
@@ -148,9 +144,7 @@ class TestJsonStorage:
         """Test loading data from existing file."""
         with tempfile.TemporaryDirectory() as tmpdir:
             storage = JsonStorage(storage_dir=Path(tmpdir))
-            msg = Message(
-                content="Test", platform="reddit", url="https://reddit.com"
-            )
+            msg = Message(content="Test", platform="reddit", url="https://reddit.com")
             storage.save(msg, "test_message")
 
             loaded = storage.load("test_message")
@@ -170,9 +164,7 @@ class TestJsonStorage:
         """Test exists() returns True for existing file."""
         with tempfile.TemporaryDirectory() as tmpdir:
             storage = JsonStorage(storage_dir=Path(tmpdir))
-            msg = Message(
-                content="Test", platform="reddit", url="https://reddit.com"
-            )
+            msg = Message(content="Test", platform="reddit", url="https://reddit.com")
             storage.save(msg, "test_message")
 
             assert storage.exists("test_message") is True
@@ -188,9 +180,7 @@ class TestJsonStorage:
         """Test delete() removes file."""
         with tempfile.TemporaryDirectory() as tmpdir:
             storage = JsonStorage(storage_dir=Path(tmpdir))
-            msg = Message(
-                content="Test", platform="reddit", url="https://reddit.com"
-            )
+            msg = Message(content="Test", platform="reddit", url="https://reddit.com")
             storage.save(msg, "test_message")
 
             assert storage.exists("test_message") is True
@@ -211,9 +201,7 @@ class TestJsonStorage:
         """Test list_files() returns all JSON files."""
         with tempfile.TemporaryDirectory() as tmpdir:
             storage = JsonStorage(storage_dir=Path(tmpdir))
-            msg = Message(
-                content="Test", platform="reddit", url="https://reddit.com"
-            )
+            msg = Message(content="Test", platform="reddit", url="https://reddit.com")
 
             storage.save(msg, "file1")
             storage.save(msg, "file2")

@@ -39,8 +39,8 @@ ThinkScraper is built on **SOLID principles** and modern Python best practices. 
 │          │  │ Scraper  │  │          │  │          │
 └────┬─────┘  └────┬─────┘  └────┬─────┘  └────┬─────┘
      │             │             │             │
-     └─────────┬───┴───────┬─────┴─────────────┘             
-               │           │                   
+     └─────────┬───┴───────┬─────┴─────────────┘
+               │           │
         ┌──────▼─────┐  ┌──▼──────────┐
         │ HttpClient │  │   Parser    │
         │            │  │             │
@@ -91,7 +91,7 @@ class IHttpClient(ABC):
     @abstractmethod
     def get(self, url: str, timeout: Optional[int] = None) -> str:
         pass
-    
+
     @abstractmethod
     def head(self, url: str, timeout: Optional[int] = None) -> dict:
         pass
@@ -101,11 +101,11 @@ class IScraper(ABC):
     @abstractmethod
     def scrape(self, url: str) -> ScrapingResult:
         pass
-    
+
     @abstractmethod
     def can_handle(self, url: str) -> bool:
         pass
-    
+
     @property
     @abstractmethod
     def platform_name(self) -> str:
@@ -175,7 +175,7 @@ class BaseScraper(IScraper):
         # 3. Fetch HTML
         # 4. Parse content
         # 5. Return result
-        
+
     @abstractmethod
     def _get_parser(self) -> IParser:
         """Subclasses implement this"""
@@ -211,10 +211,10 @@ class StackOverflowParser(BaseParser):
 class RedditScraper(BaseScraper):
     def _get_parser(self) -> IParser:
         return RedditParser()
-    
+
     def _get_supported_domains(self) -> list[str]:
         return ["reddit.com", "old.reddit.com"]
-    
+
     @property
     def platform_name(self) -> str:
         return "reddit"
@@ -421,10 +421,10 @@ class NewPlatformParser(BaseParser):
 class NewPlatformScraper(BaseScraper):
     def _get_parser(self):
         return NewPlatformParser()
-    
+
     def _get_supported_domains(self):
         return ["newplatform.com"]
-    
+
     @property
     def platform_name(self):
         return "newplatform"

@@ -76,9 +76,7 @@ class Orchestrator:
         self.results.append(result)
 
         if result.success:
-            logger.info(
-                f"Successfully scraped {result.messages_count} messages from {url}"
-            )
+            logger.info(f"Successfully scraped {result.messages_count} messages from {url}")
         else:
             logger.warning(f"Scraping failed for {url}: {result.error}")
 
@@ -115,15 +113,11 @@ class Orchestrator:
 
             except ValueError as e:
                 logger.warning(f"Failed to scrape {url}: {str(e)}")
-                results.append(
-                    ScrapingResult(success=False, url=url, error=str(e))
-                )
+                results.append(ScrapingResult(success=False, url=url, error=str(e)))
 
             except Exception as e:
                 logger.error(f"Unexpected error scraping {url}: {str(e)}")
-                results.append(
-                    ScrapingResult(success=False, url=url, error=str(e))
-                )
+                results.append(ScrapingResult(success=False, url=url, error=str(e)))
 
         logger.info(
             f"Completed scraping {len(urls)} URLs. "
@@ -155,10 +149,7 @@ class Orchestrator:
 
         if not self.factory.is_platform_supported(platform):
             supported = ", ".join(self.factory.supported_platforms)
-            raise ValueError(
-                f"Platform '{platform}' not supported. "
-                f"Supported: {supported}"
-            )
+            raise ValueError(f"Platform '{platform}' not supported. " f"Supported: {supported}")
 
         logger.info(f"Starting scrape for platform '{platform}' with {len(urls)} URLs")
 
@@ -172,9 +163,7 @@ class Orchestrator:
 
             except Exception as e:
                 logger.error(f"Error scraping {url}: {str(e)}")
-                results.append(
-                    ScrapingResult(success=False, url=url, error=str(e))
-                )
+                results.append(ScrapingResult(success=False, url=url, error=str(e)))
 
         logger.info(f"Completed scraping {platform}: {len(results)} URLs processed")
 

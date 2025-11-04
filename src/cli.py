@@ -11,7 +11,12 @@ import click
 from src.json_storage import JsonStorage
 from src.orchestrator import Orchestrator
 from src.scraper_factory import ScraperFactory
-from src.scrapers import DevToScraper, MediumScraper, RedditScraper, StackOverflowScraper
+from src.scrapers import (
+    DevToScraper,
+    MediumScraper,
+    RedditScraper,
+    StackOverflowScraper,
+)
 
 # Configure logging
 logging.basicConfig(
@@ -252,9 +257,7 @@ def export_results(input_file, output_file: str, output_format: str) -> None:
                 sys.exit(1)
 
             with open(output_file, "w", newline="") as f:
-                writer = csv.DictWriter(
-                    f, fieldnames=["url", "success", "messages_count", "error"]
-                )
+                writer = csv.DictWriter(f, fieldnames=["url", "success", "messages_count", "error"])
                 writer.writeheader()
 
                 for result in data["results"]:
@@ -318,9 +321,7 @@ def show_summary(input_file) -> None:
             )
         )
         click.echo(f"  Total Messages:    {summary['total_messages']}")
-        click.echo(
-            f"  Success Rate:      {summary['success_rate']:.1f}%"
-        )
+        click.echo(f"  Success Rate:      {summary['success_rate']:.1f}%")
 
     except json.JSONDecodeError:
         click.echo(

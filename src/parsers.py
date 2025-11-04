@@ -128,9 +128,9 @@ class RedditParser(BaseParser):
         messages = []
 
         # Reddit comment selectors (these are examples - adjust based on actual structure)
-        comment_elements = soup.find_all(
-            "div", class_="md"
-        ) or soup.find_all("div", {"data-type": "comment"})
+        comment_elements = soup.find_all("div", class_="md") or soup.find_all(
+            "div", {"data-type": "comment"}
+        )
 
         for element in comment_elements[:100]:  # Limit to 100 messages
             try:

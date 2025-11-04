@@ -260,9 +260,7 @@ class TestExportResultsCommand:
         with runner.isolated_filesystem():
             # Create input file
             input_data = {
-                "results": [
-                    {"url": "url1", "success": True, "messages_count": 5, "error": None}
-                ],
+                "results": [{"url": "url1", "success": True, "messages_count": 5, "error": None}],
                 "summary": {
                     "total_urls": 1,
                     "successful": 1,
@@ -290,9 +288,7 @@ class TestExportResultsCommand:
         with runner.isolated_filesystem():
             # Create input file
             input_data = {
-                "results": [
-                    {"url": "url1", "success": True, "messages_count": 5, "error": None}
-                ],
+                "results": [{"url": "url1", "success": True, "messages_count": 5, "error": None}],
                 "summary": {
                     "total_urls": 1,
                     "successful": 1,
