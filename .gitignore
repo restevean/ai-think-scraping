@@ -1,0 +1,39 @@
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+__pycache__/
+
+# UV
+.uv/
+uv.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# Build
+dist/
+build/
+*.egg-info/
+
+# Scraping output
+data/
+output/
+*.json
+logs/
+
+# Environment variables
+.env
+.env.local
