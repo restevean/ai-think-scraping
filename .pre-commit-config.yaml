@@ -17,7 +17,7 @@ repos:
     hooks:
       - id: isort
         language_version: python3.12
-        entry: bash -c 'uv run isort --profile black --settings-path=pyproject.toml "$@"; git add -u' --
+        entry: bash -c 'uv run isort --profile black "$@"; git add -u' --
         types: [python]
 
   - repo: https://github.com/psf/black
