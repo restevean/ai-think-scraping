@@ -41,6 +41,15 @@ profile = "black"
 line_length = 100
 skip_gitignore = true
 known_first_party = ["src"]
+extend_skip_glob = [
+    "tests/htmlcov/*",
+    "htmlcov/*",
+    ".venv/*",
+    ".git/*",
+    "**/__pycache__/*",
+    "*.egg-info/*",
+    "pyproject.toml"
+]
 
 [tool.black]
 line-length = 100
