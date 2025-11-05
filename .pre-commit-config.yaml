@@ -17,7 +17,7 @@ repos:
     hooks:
       - id: isort
         language_version: python3.12
-        entry: bash -c 'uv run isort --profile black "$@"; git add -u' --
+        entry: bash -c 'uv run isort --profile black "$@"' --
         types: [python]
 
   - repo: https://github.com/psf/black
@@ -25,7 +25,7 @@ repos:
     hooks:
       - id: black
         language_version: python3.12
-        entry: bash -c 'uv run black "$@"; git add -u' --
+        entry: bash -c 'uv run black "$@"' --
         types: [python]
 
   - repo: local
