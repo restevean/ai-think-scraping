@@ -1,60 +1,60 @@
 # ThinkScraper
 
-Web scraper para recopilar opiniones, mensajes y conversaciones de múltiples plataformas sobre desarrollo de software.
+Web scraper for collecting opinions, messages and conversations from multiple platforms about software development.
 
-## Requisitos
+## Requirements
 
 - Python 3.12+
-- UV para gestión de entornos y dependencias
+- UV for environment and dependency management
 
-## Instalación
+## Installation
 
 ```bash
-# Clonar el repositorio
+# Clone the repository
 git clone <repo>
 cd ai-think-scrapping
 
-# Crear entorno virtual con UV
+# Create virtual environment with UV
 uv venv
 
-# Activar entorno
-source .venv/bin/activate  # En Linux/Mac
-.venv\Scripts\activate     # En Windows
+# Activate environment
+source .venv/bin/activate  # On Linux/Mac
+.venv\Scripts\activate     # On Windows
 
-# Instalar dependencias
+# Install dependencies
 uv pip install -e .
 
-# Instalar dependencias de desarrollo (opcional)
+# Install development dependencies (optional)
 uv pip install -e ".[dev]"
 ```
 
 ## Quick Start
 
 ```bash
-# Listar plataformas soportadas
+# List supported platforms
 thinkscraper list-platforms
 
-# Scrapear una URL
+# Scrape a URL
 thinkscraper scrape-url https://reddit.com/r/Python
 
-# Scrapear múltiples URLs
-thinkscraper scrape-urls urls.txt --output resultados.json
+# Scrape multiple URLs
+thinkscraper scrape-urls urls.txt --output results.json
 
-# Ver resumen de resultados
-thinkscraper show-summary resultados.json
+# View results summary
+thinkscraper show-summary results.json
 
-# Exportar a CSV
-thinkscraper export-results resultados.json reporte.csv --format csv
+# Export to CSV
+thinkscraper export-results results.json report.csv --format csv
 ```
 
-## Plataformas Soportadas
+## Supported Platforms
 
 - Reddit
 - Stack Overflow
 - Medium
 - Dev.to
 
-## Estructura del Proyecto
+## Project Structure
 
 ```
 ai-think-scrapping/
@@ -62,14 +62,14 @@ ai-think-scrapping/
 │   ├── abstractions.py      # Interfaces (IScraper, IHttpClient, etc.)
 │   ├── base_scraper.py      # Template Method pattern
 │   ├── cli.py               # Click CLI interface
-│   ├── config.py            # Configuración centralizada
-│   ├── http_client.py       # Cliente HTTP con reintentos
-│   ├── json_storage.py      # Almacenamiento en JSON
+│   ├── config.py            # Centralised configuration
+│   ├── http_client.py       # HTTP client with retries
+│   ├── json_storage.py      # JSON storage
 │   ├── models.py            # Pydantic models (Message, ScrapingResult)
-│   ├── orchestrator.py      # Coordinador de scrapers
-│   ├── parsers.py           # Parsers específicos por plataforma
+│   ├── orchestrator.py      # Scrapers coordinator
+│   ├── parsers.py           # Platform-specific parsers
 │   ├── scraper_factory.py   # Factory Pattern
-│   └── scrapers.py          # Scrapers para cada plataforma
+│   └── scrapers.py          # Platform scrapers
 ├── tests/
 │   ├── test_abstractions.py
 │   ├── test_cli.py
@@ -78,72 +78,72 @@ ai-think-scrapping/
 │   ├── test_orchestrator.py
 │   └── test_scrapers.py
 ├── docs/
-│   ├── ARCHITECTURE.md      # Arquitectura técnica y diseño
-│   ├── EXAMPLES.md          # Casos de uso y ejemplos
-│   └── README.md            # Índice de documentación
-└── data/                    # Resultados en JSON
+│   ├── ARCHITECTURE.md      # Technical architecture and design
+│   ├── EXAMPLES.md          # Use cases and examples
+│   └── README.md            # Documentation index
+└── data/                    # JSON results
 ```
 
-## Ejecución de Tests
+## Running Tests
 
 ```bash
-# Ejecutar todos los tests
+# Run all tests
 pytest
 
-# Con reporte de cobertura
+# With coverage report
 pytest --cov=src --cov-report=html
 
-# Tests específicos
+# Specific tests
 pytest tests/test_cli.py -v
 ```
 
-## Características
+## Features
 
-✅ Scraping de múltiples plataformas
-✅ CLI profesional con Click
-✅ Arquitectura SOLID
-✅ Tests completos con TDD
-✅ Manejo de errores robusto
-✅ Rate limiting y reintentos automáticos
-✅ Exportación a JSON y CSV
-✅ Type hints y validación con Pydantic
-✅ Cobertura de código >95%
+✅ Multi-platform scraping
+✅ Professional CLI with Click
+✅ SOLID architecture
+✅ Comprehensive tests with TDD
+✅ Robust error handling
+✅ Automatic rate limiting and retries
+✅ Export to JSON and CSV
+✅ Type hints and validation with Pydantic
+✅ Code coverage >95%
 
-## Documentación
+## Documentation
 
-- [ARCHITECTURE.md](./docs/ARCHITECTURE.md) - Arquitectura técnica, patrones de diseño y SOLID
-- [EXAMPLES.md](./docs/EXAMPLES.md) - Casos de uso, ejemplos CLI y programáticos
-- [docs/README.md](./docs/README.md) - Índice de documentación
+- [ARCHITECTURE.md](./docs/ARCHITECTURE.md) - Technical architecture, design patterns and SOLID principles
+- [EXAMPLES.md](./docs/EXAMPLES.md) - Use cases, CLI and programmatic examples
+- [docs/README.md](./docs/README.md) - Documentation index
 
-## Licencia
+## Licence
 
-Este proyecto está licenciado bajo la licencia MIT - ver el archivo [LICENSE](./LICENSE) para más detalles.
+MIT
 
-# Explicación Detallada del Comando ThinkScraper
+# Detailed Explanation of ThinkScraper Command
 
-## Nivel 1: Estructura General
+## Level 1: General Structure
 
-ThinkScraper es una **herramienta CLI (Command Line Interface)** que funciona con la estructura:
+ThinkScraper is a **CLI (Command Line Interface) tool** that works with the structure:
 
 ```bash
-thinkscraper [COMANDO] [ARGUMENTOS] [OPCIONES]
+thinkscraper [COMMAND] [ARGUMENTS] [OPTIONS]
 ```
 
-Tiene **7 comandos principales**.
+It has **7 main commands**.
 
 ---
 
-## Nivel 2: Comandos Disponibles
+## Level 2: Available Commands
 
-### 1️⃣ `list-platforms` (El más simple)
+### 1️⃣ `list-platforms` (The simplest)
 
 ```bash
 thinkscraper list-platforms
 ```
 
-**Qué hace:** Muestra las plataformas que ThinkScraper soporta.
+**What it does:** Shows the platforms that ThinkScraper supports.
 
-**Salida:**
+**Output:**
 ```
 📋 Supported Platforms:
   • devto
@@ -154,31 +154,31 @@ thinkscraper list-platforms
 
 ---
 
-### 2️⃣ `scrape-url` (Una URL, simple)
+### 2️⃣ `scrape-url` (Single URL, simple)
 
 ```bash
 thinkscraper scrape-url "https://reddit.com/r/Python"
 ```
 
-**Qué hace:** Scrappea una única URL detectando automáticamente su plataforma.
+**What it does:** Scrapes a single URL by automatically detecting its platform.
 
-**Con opción output:**
+**With output option:**
 ```bash
-thinkscraper scrape-url "https://reddit.com/r/Python" --output resultado.json
+thinkscraper scrape-url "https://reddit.com/r/Python" --output result.json
 ```
 
-**Salida:**
+**Output:**
 ```
 🔍 Scraping: https://reddit.com/r/Python
 ✅ Success! Extracted 15 messages
-📁 Results saved to: resultado.json
+📁 Results saved to: result.json
 ```
 
 ---
 
-### 3️⃣ `scrape-urls` (Múltiples URLs desde archivo)
+### 3️⃣ `scrape-urls` (Multiple URLs from file)
 
-Primero creas un archivo de texto:
+First, create a text file:
 
 ```bash
 cat > urls.txt << EOF
@@ -188,37 +188,37 @@ https://medium.com/@author/article
 EOF
 ```
 
-Luego lo scrapeas:
+Then scrape it:
 
 ```bash
-thinkscraper scrape-urls urls.txt --output resultados.json
+thinkscraper scrape-urls urls.txt --output results.json
 ```
 
-**Qué hace:**
-- Lee TODAS las URLs del archivo `urls.txt` (una por línea)
-- Scrappea cada una detectando su plataforma automáticamente
-- Guarda resultados combinados en `resultados.json`
-- Genera un resumen estadístico
+**What it does:**
+- Reads ALL URLs from the `urls.txt` file (one per line)
+- Scrapes each one by automatically detecting its platform
+- Saves combined results to `results.json`
+- Generates a statistical summary
 
-**Salida:**
+**Output:**
 ```
 🔍 Scraping 3 URLs from urls.txt
 ✅ Completed: 3/3 successful
    Total messages extracted: 120
    Success rate: 100.0%
-📁 Results saved to: resultados.json
+📁 Results saved to: results.json
 ```
 
-**Opción importante:**
+**Important option:**
 ```bash
-thinkscraper scrape-urls urls.txt --output resultados.json --skip-errors
+thinkscraper scrape-urls urls.txt --output results.json --skip-errors
 ```
 
-La opción `--skip-errors` hace que continúe aunque algunas URLs fallen. Sin ella, si una URL falla, se detiene TODO.
+The `--skip-errors` option makes it continue even if some URLs fail. Without it, if one URL fails, EVERYTHING stops.
 
 ---
 
-### 4️⃣ `scrape-platform` (Múltiples URLs de UNA plataforma)
+### 4️⃣ `scrape-platform` (Multiple URLs from ONE platform)
 
 ```bash
 thinkscraper scrape-platform reddit \
@@ -227,28 +227,28 @@ thinkscraper scrape-platform reddit \
   https://reddit.com/golang
 ```
 
-**Qué hace:**
-- Scrappea múltiples URLs de la MISMA plataforma
-- Es más eficiente que `scrape-urls` porque **no necesita detectar plataforma para cada URL**
-- Usa el mismo scraper para todas (más rápido)
+**What it does:**
+- Scrapes multiple URLs from the SAME platform
+- It's more efficient than `scrape-urls` because **it doesn't need to detect the platform for each URL**
+- Uses the same scraper for all (faster)
 
-**Ventaja de rendimiento:**
+**Performance advantage:**
 ```
-scrape-urls     → Detecta plataforma 3 veces (lento)
-scrape-platform → Usa el mismo scraper 3 veces (rápido)
+scrape-urls     → Detects platform 3 times (slow)
+scrape-platform → Uses the same scraper 3 times (fast)
 ```
 
 ---
 
-### 5️⃣ `show-summary` (Ver resumen de resultados)
+### 5️⃣ `show-summary` (View results summary)
 
 ```bash
-thinkscraper show-summary resultados.json
+thinkscraper show-summary results.json
 ```
 
-**Qué hace:** Muestra un resumen de los datos extraídos sin abrir el archivo JSON.
+**What it does:** Shows a summary of extracted data without opening the JSON file.
 
-**Salida:**
+**Output:**
 ```
 📊 Scraping Summary:
 
@@ -261,19 +261,19 @@ thinkscraper show-summary resultados.json
 
 ---
 
-### 6️⃣ `export-results` (Convertir JSON a otro formato)
+### 6️⃣ `export-results` (Convert JSON to another format)
 
 ```bash
-thinkscraper export-results resultados.json reporte.csv --format csv
+thinkscraper export-results results.json report.csv --format csv
 ```
 
-**Qué hace:** Convierte los resultados JSON a CSV (o mantiene JSON).
+**What it does:** Converts the JSON results to CSV (or keeps JSON).
 
-**Formatos disponibles:**
-- `--format json` → Mantiene formato JSON
-- `--format csv` → Convierte a CSV
+**Available formats:**
+- `--format json` → Keeps JSON format
+- `--format csv` → Converts to CSV
 
-**CSV resultante:**
+**Resulting CSV:**
 ```csv
 url,success,messages_count,error
 https://reddit.com/r/Python,True,15,
@@ -283,9 +283,9 @@ https://invalid.com,False,0,No scraper supports URL
 
 ---
 
-## Nivel 3: Estructura del JSON de Salida
+## Level 3: Output JSON Structure
 
-Cuando haces scraping y usas `--output`, obtienes algo como:
+When you scrape and use `--output`, you get something like:
 
 ```json
 {
@@ -317,85 +317,85 @@ Cuando haces scraping y usas `--output`, obtienes algo como:
 
 ---
 
-## Nivel 4: Flujo Completo (Cómo usarlos juntos)
+## Level 4: Complete Flow (How to use them together)
 
-**Paso 1:** Crear archivo con URLs
+**Step 1:** Create file with URLs
 ```bash
-cat > mis_urls.txt << EOF
+cat > my_urls.txt << EOF
 https://reddit.com/r/Python
 https://stackoverflow.com/questions/12345
 https://medium.com/@author/article
 EOF
 ```
 
-**Paso 2:** Scrapear todas
+**Step 2:** Scrape all
 ```bash
-thinkscraper scrape-urls mis_urls.txt --output resultados.json
+thinkscraper scrape-urls my_urls.txt --output results.json
 ```
 
-**Paso 3:** Ver resumen
+**Step 3:** View summary
 ```bash
-thinkscraper show-summary resultados.json
+thinkscraper show-summary results.json
 ```
 
-**Paso 4:** Exportar a CSV para análisis
+**Step 4:** Export to CSV for analysis
 ```bash
-thinkscraper export-results resultados.json reporte.csv --format csv
+thinkscraper export-results results.json report.csv --format csv
 ```
 
-**Resultado final:** `reporte.csv` listo para abrir en Excel.
+**Final result:** `report.csv` ready to open in Excel.
 
 ---
 
-## Nivel 5: Opciones Disponibles por Comando
+## Level 5: Available Options per Command
 
 ### `thinkscraper scrape-url`
-- `--output, -o` → Archivo de salida (JSON)
-- `--help` → Mostrar ayuda
+- `--output, -o` → Output file (JSON)
+- `--help` → Show help
 
 ### `thinkscraper scrape-urls`
-- `--output, -o` → Archivo de salida (JSON) [REQUERIDO]
-- `--skip-errors` → Continuar si hay errores
-- `--help` → Mostrar ayuda
+- `--output, -o` → Output file (JSON) [REQUIRED]
+- `--skip-errors` → Continue if there are errors
+- `--help` → Show help
 
 ### `thinkscraper scrape-platform`
-- `--output, -o` → Archivo de salida (JSON)
-- `--help` → Mostrar ayuda
+- `--output, -o` → Output file (JSON)
+- `--help` → Show help
 
 ### `thinkscraper export-results`
-- `--format` → Formato de salida (json, csv) [default: json]
-- `--help` → Mostrar ayuda
+- `--format` → Output format (json, csv) [default: json]
+- `--help` → Show help
 
 ---
 
-## Resumen Visual de Todos los Comandos
+## Visual Summary of All Commands
 
-| Comando | Para qué | Entrada | Salida |
-|---------|----------|---------|--------|
-| `list-platforms` | Ver plataformas soportadas | Ninguna | Terminal |
-| `scrape-url` | Scrapear 1 URL | URL en terminal | JSON (opcional) |
-| `scrape-urls` | Scrapear N URLs | Archivo .txt | JSON con resumen |
-| `scrape-platform` | Scrapear N URLs misma plataforma | Plataforma + URLs | JSON con resumen |
-| `show-summary` | Ver resumen de resultados | JSON previo | Terminal |
-| `export-results` | Convertir formato JSON a CSV | JSON previo | CSV o JSON |
+| Command | Purpose | Input | Output |
+|---------|---------|-------|--------|
+| `list-platforms` | View supported platforms | None | Terminal |
+| `scrape-url` | Scrape 1 URL | URL in terminal | JSON (optional) |
+| `scrape-urls` | Scrape N URLs | .txt file | JSON with summary |
+| `scrape-platform` | Scrape N URLs same platform | Platform + URLs | JSON with summary |
+| `show-summary` | View results summary | Previous JSON | Terminal |
+| `export-results` | Convert JSON format to CSV | Previous JSON | CSV or JSON |
 
 ---
 
-## Casos de Uso Comunes
+## Common Use Cases
 
-### Caso 1: Scraping simple de una URL de Reddit
+### Case 1: Simple scraping of a Reddit URL
 ```bash
 thinkscraper scrape-url https://reddit.com/r/Python
 ```
 
-### Caso 2: Scraping de múltiples URLs con reporte
+### Case 2: Scraping multiple URLs with report
 ```bash
 thinkscraper scrape-urls urls.txt --output results.json
 thinkscraper show-summary results.json
 thinkscraper export-results results.json report.csv --format csv
 ```
 
-### Caso 3: Scraping por plataforma
+### Case 3: Scraping by platform
 ```bash
 thinkscraper scrape-platform stackoverflow \
   https://stackoverflow.com/q/1 \
@@ -404,7 +404,7 @@ thinkscraper scrape-platform stackoverflow \
   --output so_results.json
 ```
 
-### Caso 4: Workflow completo
+### Case 4: Complete workflow
 ```bash
 cat > urls.txt << EOF
 https://reddit.com/r/python
@@ -419,19 +419,19 @@ thinkscraper export-results results.json export.csv --format csv
 
 ---
 
-## Solución de Problemas
+## Troubleshooting
 
 ### Error: "command not found: thinkscraper"
-**Solución:** Ejecuta:
+**Solution:** Run:
 ```bash
 uv pip install -e .
 ```
 
 ### Error: "No scraper supports URL"
-**Solución:** Verifica que la URL sea de una plataforma soportada. Usa `list-platforms` para ver las disponibles.
+**Solution:** Verify that the URL is from a supported platform. Use `list-platforms` to see the available ones.
 
-### Una URL falla y se detiene todo
-**Solución:** Usa la opción `--skip-errors`:
+### One URL fails and everything stops
+**Solution:** Use the `--skip-errors` option:
 ```bash
-thinkscraper scrape-urls urls.txt --output resultados.json --skip-errors
+thinkscraper scrape-urls urls.txt --output results.json --skip-errors
 ```

@@ -1,0 +1,1 @@
+zip -r ai-think-scrapping.zip . -x ".*" ".venv/*" "__pycache__/*" "*.pyc" ".pytest_cache/*" "*.egg-info/*" ".UV/*" ".uv/*" "node_modules/*" "dist/*" "build/*"

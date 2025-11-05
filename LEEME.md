@@ -1,3 +1,124 @@
+# ThinkScraper
+
+Web scraper para recopilar opiniones, mensajes y conversaciones de múltiples plataformas sobre desarrollo de software.
+
+## Requisitos
+
+- Python 3.12+
+- UV para gestión de entornos y dependencias
+
+## Instalación
+
+```bash
+# Clonar el repositorio
+git clone <repo>
+cd ai-think-scrapping
+
+# Crear entorno virtual con UV
+uv venv
+
+# Activar entorno
+source .venv/bin/activate  # En Linux/Mac
+.venv\Scripts\activate     # En Windows
+
+# Instalar dependencias
+uv pip install -e .
+
+# Instalar dependencias de desarrollo (opcional)
+uv pip install -e ".[dev]"
+```
+
+## Quick Start
+
+```bash
+# Listar plataformas soportadas
+thinkscraper list-platforms
+
+# Scrapear una URL
+thinkscraper scrape-url https://reddit.com/r/Python
+
+# Scrapear múltiples URLs
+thinkscraper scrape-urls urls.txt --output resultados.json
+
+# Ver resumen de resultados
+thinkscraper show-summary resultados.json
+
+# Exportar a CSV
+thinkscraper export-results resultados.json reporte.csv --format csv
+```
+
+## Plataformas Soportadas
+
+- Reddit
+- Stack Overflow
+- Medium
+- Dev.to
+
+## Estructura del Proyecto
+
+```
+ai-think-scrapping/
+├── src/
+│   ├── abstractions.py      # Interfaces (IScraper, IHttpClient, etc.)
+│   ├── base_scraper.py      # Template Method pattern
+│   ├── cli.py               # Click CLI interface
+│   ├── config.py            # Configuración centralizada
+│   ├── http_client.py       # Cliente HTTP con reintentos
+│   ├── json_storage.py      # Almacenamiento en JSON
+│   ├── models.py            # Pydantic models (Message, ScrapingResult)
+│   ├── orchestrator.py      # Coordinador de scrapers
+│   ├── parsers.py           # Parsers específicos por plataforma
+│   ├── scraper_factory.py   # Factory Pattern
+│   └── scrapers.py          # Scrapers para cada plataforma
+├── tests/
+│   ├── test_abstractions.py
+│   ├── test_cli.py
+│   ├── test_implementations.py
+│   ├── test_models.py
+│   ├── test_orchestrator.py
+│   └── test_scrapers.py
+├── docs/
+│   ├── ARCHITECTURE.md      # Arquitectura técnica y diseño
+│   ├── EXAMPLES.md          # Casos de uso y ejemplos
+│   └── README.md            # Índice de documentación
+└── data/                    # Resultados en JSON
+```
+
+## Ejecución de Tests
+
+```bash
+# Ejecutar todos los tests
+pytest
+
+# Con reporte de cobertura
+pytest --cov=src --cov-report=html
+
+# Tests específicos
+pytest tests/test_cli.py -v
+```
+
+## Características
+
+✅ Scraping de múltiples plataformas
+✅ CLI profesional con Click
+✅ Arquitectura SOLID
+✅ Tests completos con TDD
+✅ Manejo de errores robusto
+✅ Rate limiting y reintentos automáticos
+✅ Exportación a JSON y CSV
+✅ Type hints y validación con Pydantic
+✅ Cobertura de código >95%
+
+## Documentación
+
+- [ARCHITECTURE.md](./docs/ARCHITECTURE.md) - Arquitectura técnica, patrones de diseño y SOLID
+- [EXAMPLES.md](./docs/EXAMPLES.md) - Casos de uso, ejemplos CLI y programáticos
+- [docs/README.md](./docs/README.md) - Índice de documentación
+
+## Licencia
+
+Este proyecto está licenciado bajo la licencia MIT - ver el archivo [LICENSE](./LICENSE) para más detalles.
+
 # Explicación Detallada del Comando ThinkScraper
 
 ## Nivel 1: Estructura General

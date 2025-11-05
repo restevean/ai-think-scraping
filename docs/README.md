@@ -57,7 +57,7 @@ Practical examples for different use cases.
 
 If you're just getting started:
 
-1. Read the main [README.md](../README.md)
+1. Read the main [README.md](../LEEME-README%20.md)
 2. Check [EXAMPLES.md](./EXAMPLES.md) for usage patterns
 3. Run `thinkscraper --help`
 
