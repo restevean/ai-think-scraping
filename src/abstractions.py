@@ -5,7 +5,8 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-from src.models import ConversationThread, Message, ScrapingResult
+# from src.models import ConversationThread, Message, ScrapingResult
+from src.models import Message, ScrapingResult
 
 
 class IHttpClient(ABC):
