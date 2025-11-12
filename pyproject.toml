@@ -71,5 +71,5 @@ packages = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "--cov=src --cov-report=term-missing --cov-report=html"
+addopts = "--cov=src"
 python_files = ["test_*.py", "*_test.py"]
