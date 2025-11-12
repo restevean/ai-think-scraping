@@ -188,15 +188,7 @@ class BaseScraper(IScraper):
     @property
     @abstractmethod
     def platform_name(self) -> str:
-        """
-        Get the platform name.
 
-        Returns:
-            Platform name (e.g., 'reddit', 'stackoverflow')
-
-        Note:
-            Subclasses must implement this
-        """
         pass
 
     def __repr__(self) -> str:
