@@ -11,12 +11,7 @@ import click
 from src.json_storage import JsonStorage
 from src.orchestrator import Orchestrator
 from src.scraper_factory import ScraperFactory
-from src.scrapers import (
-    DevToScraper,
-    MediumScraper,
-    RedditScraper,
-    StackOverflowScraper,
-)
+from src.scrapers import DevToScraper, MediumScraper, RedditScraper, StackOverflowScraper
 
 # Configure logging
 logging.basicConfig(
